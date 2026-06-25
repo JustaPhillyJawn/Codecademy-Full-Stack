@@ -84,7 +84,6 @@
     border: thin solid tomato;
     display: flex;
     flex-direction: column;
-    left: 50%;
     gap: 75px;
   }
     .mainbutton button {
