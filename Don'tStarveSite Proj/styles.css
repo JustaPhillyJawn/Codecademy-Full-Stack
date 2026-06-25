@@ -4,8 +4,6 @@
   border: thin dotted blue;
   font-family: "Tektur", sans-serif;
   font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
 }
 .header {
   display: flex;
