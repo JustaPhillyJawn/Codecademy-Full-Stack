@@ -2,35 +2,45 @@
   width: 100%;
   height: 100%;
   border: thin dotted blue;
+  font-family: "Tektur", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
 }
 .header {
-  grid-row: 1;
   display: flex;
   border: thin dotted black;
   width: 100%;
   height: 100px;
 }
   .nav-bar {
+    position: relative;
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
     height: 100px;
     border: thin dotted red; 
-    background-color: black;
+    background: linear-gradient(to right,transparent,black);
   }
     .logo{
       border: thin solid green;
+      display: flex;
       align-items: center;
       justify-content: center;
       width: 100px;
       height: 100%;
-      font-size:75px;
+      font-size: 75px;
+      background-color: black;
       color: white;
     }
-      .logo:hover {
-        color:orange;
-      }
+        .logo:hover {
+          cursor: pointer;
+          color:orange;
+        }
     .navbutton-wrapper {
       display: flex;
       align-items: center;
@@ -45,6 +55,11 @@
         color: orange;
       }
 .main {
+  position:absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  width: 100%;
   display: grid;
   place-items: center; /* Centers both horizontally and vertically at once */
   min-height: 100vh;
@@ -54,13 +69,23 @@
   background-position: center;
   background-repeat: no-repeat;
 }
+  .main-header {
+    display: flex;
+    font-family: "Rubik Glitch", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+    font-size: 150px;
+    font-display: center;
+    text-align: center;
+    padding-top: 10%;
+  }
   .mainbutton {
     border: thin solid tomato;
     display: flex;
     flex-direction: column;
     left: 50%;
     gap: 75px;
-    transform: translate(-50%, -50%);
   }
     .mainbutton button {
       background: transparent;
@@ -68,6 +93,12 @@
     }
     .mainbutton text{
       color:white;
+      font-family: "Tektur", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: <weight>;
+      font-style: normal;
+      font-size: 30px;
+
     }
       .mainbutton text:hover {
         cursor: pointer;
