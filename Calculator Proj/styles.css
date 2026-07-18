@@ -1,0 +1,130 @@
+:root {
+  --bg: #121620;
+  --panel: #1e2636;
+  --display: #0f1728;
+  --button: #2b3651;
+  --button-accent: #3d5eff;
+  --button-secondary: #5a6b8f;
+  --text: #f8f9ff;
+  --border: rgba(255, 255, 255, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: radial-gradient(circle at top, #2b3143 0%, #0d1220 70%);
+  color: var(--text);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.wrapper {
+  width: min(380px, 100%);
+  background: linear-gradient(180deg, rgba(28, 35, 54, 0.96), rgba(19, 25, 39, 0.98));
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: 24px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+#display {
+  width: 100%;
+  min-height: 80px;
+  padding: 22px 20px;
+  margin-bottom: 18px;
+  border-radius: 20px;
+  background: var(--display);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: right;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.calculator {
+  display: grid;
+  gap: 14px;
+}
+
+.numberInputs,
+.operatorInputs,
+.output {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.numberInputs {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.operatorInputs {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.output {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+button {
+  border: none;
+  border-radius: 18px;
+  padding: 18px 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--button);
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button.number {
+  background: linear-gradient(180deg, #2f3b58, #232f48);
+}
+
+button.operator {
+  background: linear-gradient(180deg, #3c77ff, #2f60e5);
+}
+
+button#equals {
+  background: linear-gradient(180deg, #20c997, #179c7b);
+  grid-column: span 1;
+}
+
+button#clear {
+  background: linear-gradient(180deg, #ec5f7a, #d23d59);
+}
+
+
+@media (max-width: 420px) {
+  .wrapper {
+    padding: 18px;
+  }
+
+  button {
+    padding: 16px 0;
+    font-size: 1.1rem;
+  }
+}
