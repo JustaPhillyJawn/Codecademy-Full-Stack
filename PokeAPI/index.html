@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PokeAPI</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="header">
+      <div class="header-content">
+        <h1>PokeAPI</h1>
+        <p>Search for a Pokémon by name or ID, then view its info card below.</p>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section class="search-panel">
+        <h2>Find your Pokémon</h2>
+        <div class="search-row">
+          <input id="searchInput" type="text" placeholder="Enter Pokémon name or ID">
+          <button id="searchButton" class="search-button">Search</button>
+        </div>
+        <p class="help-text">Example: pikachu, charizard, 25, 150</p>
+      </section>
+
+      <section class="pokemon-info" id="pokemonInfo">
+        <div class="empty-state">Search for a Pokémon to see its info card.</div>
+      </section>
+    </main>
+  </div>
+  <script src="index.js"></script>
+</body>
+</html>                    

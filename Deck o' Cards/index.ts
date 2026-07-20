@@ -1,26 +1,68 @@
+type Suit = 'Hearts' | 'Diamonds' | 'Clubs' | 'Spades';
+type Rank = 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 'Jack' | 'Queen' | 'King' | 'Ace';
+
 interface Card {
-    suit: string;
-    value: string;
+  suit: Suit;
+  rank: Rank;
 }
 
 interface Deck {
-    cards: Card[];
-    shuffle(): void;
-    draw(): Card | null;
-    
+  deck: Card[];
+  shuffle(): void;
+  draw(): Card | undefined;
 }
 
-function draw(): Card | null {
-    if (Deck.cards.length === 0) {
-        return null; // Return null if there are no cards left in the deck
+class CardClass implements Card {
+  suit: Suit;
+  rank: Rank;
+
+  constructor(suit: Suit, rank: Rank) {
+    this.suit = suit;
+    this.rank = rank;
+  }
+
+  toString() {
+    return `${this.rank} of ${this.suit}`;
+  }
+}
+
+class DeckClass implements Deck {
+  deck: Card[];
+
+  constructor() {
+    this.deck = [];
+    const ranks: Rank[] = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King', 'Ace'];
+    const suits: Suit[] = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
+
+    for (const rank of ranks) {
+      for (const suit of suits) {
+        this.deck.push(new CardClass(suit, rank));
+      }
     }
-    return Deck.cards.pop() || null; // Remove and return the last card from the deck, or null if the deck is empty
-}
+  }
 
-function shuffle(): void {
-    for (let i = deck.cards.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1)); // Generate a random index
-        [deck.cards[i], deck.cards[j]] = [deck.cards[j], deck.cards[i]]; // Swap the cards at index i and j
+  shuffle(): void {
+    for (let i = this.deck.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [this.deck[i], this.deck[j]] = [this.deck[j], this.deck[i]];
     }
+  }
+
+  draw(): Card {
+    if (this.deck.length === 0) {
+      console.log("The deck is empty!");
+      throw new Error("Cannot draw from an empty deck");
+    }
+    const card = this.deck.pop();
+    if (!card) {
+      throw new Error("Cannot draw from an empty deck");
+    }
+    return card;
+  }
 }
 
+const deck = new DeckClass();
+deck.shuffle();
+
+const card = deck.draw();
+console.log(card.toString());
