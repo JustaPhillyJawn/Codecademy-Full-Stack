@@ -1,26 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PokeAPI</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="page-wrapper">
-    <header class="header">
-      <div class="header-content">
-        <h1>PokeAPI</h1>
-        <p>Search for a Pokémon by name or ID, then view its info card below.</p>
-      </div>
-    </header>
-
-    <main class="main-content">
-      <section class="search-panel">
-        <h2>Find your Pokémon</h2>
-        <div class="search-row">
-          <input id="searchInput" type="text" placeholder="Enter Pokémon name or ID">
-          <button id="searchButton" class="search-button">Search</button>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PokeAPI</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="index.ts" type="module"></script>
+  </head>
+  <body>
+    <div id="content-box">
+      <!-- Left Side, display pokemon info-->
+      <div id="left-side">
+        <div id="pokemon-info">
+          <h1 id="pokemon-name">Pokemon Name</h1>
+          <img id="pokemon-image" src="" alt="Pokemon Image" />
+          <p id="pokemon-description">Pokemon Description</p>
+        </div>
+        <div id="right-side">
+          <!-- Right Side, display additional info -->
+          <div id="additional-info">
+            <h2>Additional Info</h2>
+            <p id="pokemon-type">Type: </p>
+            <p id="pokemon-abilities">Abilities: </p>
+            <p id="pokemon-stats">Stats: </p>
         </div>
         <p class="help-text">Example: pikachu, charizard, 25, 150</p>
       </section>
