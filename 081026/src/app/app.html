@@ -1,0 +1,9 @@
+<input #input1 placeholder="num1" />
+<div>+</div>
+<input #input2 placeholder="num2" />
+<div> = </div>
+<p>{{result}}</p>
+<button (click)="addNumbers(input1.value, input2.value)">Add</button>
+
+
+<router-outlet />

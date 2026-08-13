@@ -1,0 +1,41 @@
+/* Styles for link group: make four <a> links spaced and easy on the eyes */
+.link-row {
+	display: flex;
+	gap: 18px; /* space between links */
+	align-items: center;
+	justify-content: flex-start;
+	padding: 12px 0;
+}
+
+.link-row a {
+	display: inline-block;
+	padding: 10px 16px;
+	border-radius: 8px;
+	background: rgba(0,0,0,0.04);
+	color: #0b2545; /* readable link color */
+	text-decoration: none;
+	font-weight: 600;
+	transition: background 150ms ease, transform 120ms ease, box-shadow 150ms ease;
+}
+
+.link-row a:hover,
+.link-row a:focus {
+	background: rgba(11,37,69,0.12);
+	transform: translateY(-2px);
+	box-shadow: 0 6px 18px rgba(11,37,69,0.06);
+	outline: none;
+}
+
+/* Smaller screens: allow wrapping and slightly reduced spacing */
+@media (max-width: 480px) {
+	.link-row {
+		gap: 10px;
+		flex-wrap: wrap;
+	}
+
+	.link-row a {
+		padding: 8px 12px;
+		border-radius: 6px;
+		font-size: 14px;
+	}
+}
