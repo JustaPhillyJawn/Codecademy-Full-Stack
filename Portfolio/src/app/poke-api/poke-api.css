@@ -1,0 +1,97 @@
+
+/* PokeDex-style layout and controls using existing HTML structure */
+:root{
+	--bg1: #0f172a; /* dark navy */
+	--bg2: #07132a; /* deeper */
+	--card: #ffffff;
+	--accent: #ef4444; /* pokeball red */
+	--muted: #64748b;
+}
+
+html,body { height:100%; }
+.wrapper{
+	min-height:100vh;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	gap:20px;
+	padding:40px 16px;
+	box-sizing:border-box;
+	background: radial-gradient(circle at 10% 20%, rgba(239,68,68,0.08), transparent 20%), linear-gradient(180deg, var(--bg1), var(--bg2));
+	color: #f8fafc;
+	font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+/* Search control */
+.wrapper input[placeholder], .wrapper input[type='text']{
+	width:320px;
+	max-width:90vw;
+	padding:12px 16px;
+	border-radius:999px;
+	border: none;
+	box-shadow: 0 6px 18px rgba(2,6,23,0.5), inset 0 -2px 6px rgba(255,255,255,0.02);
+	font-size:16px;
+	background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+	color:#fff;
+}
+
+.wrapper .btn{
+	padding:10px 18px;
+	border-radius:999px;
+	background: linear-gradient(180deg, #ff6b6b, #ef4444);
+	color:white;
+	border:none;
+	font-weight:600;
+	box-shadow: 0 6px 14px rgba(239,68,68,0.25);
+	cursor:pointer;
+}
+
+.wrapper .btn:hover{ filter:brightness(0.98); }
+
+/* Results list: present each pair of <p> lines as compact cards */
+.wrapper p{
+	background: var(--card);
+	color: #0b1220;
+	width:320px;
+	max-width:92vw;
+	padding:12px 14px;
+	margin:6px 0;
+	border-radius:10px;
+	box-shadow: 0 8px 20px rgba(2,6,23,0.35);
+}
+
+/* Name (assumes name is the first of a pair) */
+.wrapper p:nth-of-type(odd){
+	font-weight:700;
+	font-size:1rem;
+}
+
+/* Type/details (assumes second of pair) */
+.wrapper p:nth-of-type(even){
+	font-size:0.9rem;
+	color: var(--muted);
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+}
+
+.type-badge{
+	background:#eef2ff;
+	color:#3730a3;
+	padding:4px 8px;
+	border-radius:999px;
+	font-size:0.8rem;
+}
+
+/* Make layout responsive and centered */
+@media(min-width:760px){
+	.wrapper{
+		padding:56px;
+	}
+	.wrapper p{ width:420px; }
+	.wrapper input{ width:420px; }
+}
+
+/* Small accessibility touch */
+.wrapper input:focus, .wrapper .btn:focus { outline: 3px solid rgba(59,130,246,0.18); outline-offset:4px; }
+
