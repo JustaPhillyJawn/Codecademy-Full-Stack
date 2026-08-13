@@ -1,1 +1,16 @@
-<p>projects-page works!</p>
+<html>
+    <head>
+        <link rel="stylesheet" href="projects-page.css" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Projects submenu component template
+             - Uses semantic nav > ul > li > a structure
+             - Links use `routerLink` to navigate to project detail routes
+    -->
+    <nav class="projects-submenu" role="navigation" aria-label="Projects submenu">
+        <ul class="subNavLink">
+            <li>
+                <a routerLink="/projects/pokeapi" routerLinkActive="active">PokeAPI</a>
+            </li>
+        </ul>
+    </nav>

@@ -1,1 +1,59 @@
-:host { display:block }
+:host { display: block; }
+
+/* Submenu container */
+.subNavLink {
+	display: flex;
+	gap: 12px;
+	align-items: center;
+	padding: 8px 0;
+}
+
+/* Make the list items look and behave like links */
+.subNavLink li {
+	list-style: none;
+	margin: 0;
+	margin: 0;
+}
+
+/* Style the anchor links inside the list items */
+.subNavLink a {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 12px;
+	border-radius: 8px;
+	background: transparent;
+	color: #111827; /* neutral-900 */
+	text-decoration: none;
+}
+}
+
+/* Hover and focus states for discoverability and accessibility */
+.subNavLink a:hover,
+.subNavLink a:focus {
+	background: #f3f4f6; /* neutral-100 */
+	color: #0f172a; /* slightly darker */
+}
+
+.subNavLink a:focus {
+	outline: none;
+	box-shadow: 0 0 0 3px rgba(59,130,246,0.18); /* subtle focus ring */
+}
+
+/* Active link styling — router may add `.active` or `router-link-active` */
+.subNavLink a.active,
+.subNavLink a.router-link-active,
+.subNavLink a[aria-current="page"] {
+	background: #e0f2fe; /* light blue */
+	color: #0369a1; /* blue-700 */
+}
+
+/* Responsive: wrap items on narrow viewports */
+@media (max-width: 520px) {
+	.subNavLink { flex-wrap: wrap; gap: 8px; }
+	.subNavLink li { padding: 6px 10px; }
+}
+
+/* Hint: template uses `routerLink` on an <li>; if you switch to <a>, use this:
+.subNavLink a { text-decoration: none; color: inherit; display: inline-flex; }
+*/
