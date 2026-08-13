@@ -1,16 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { NgForOf } from '@angular/common';
+import { PokeService } from '../poke-service';
 
 @Component({
   selector: 'app-poke-api',
-  imports: [],
+  standalone: true,
+  imports: [NgForOf],
   templateUrl: './poke-api.html',
-  styleUrl: './poke-api.css',
+  styleUrls: ['./poke-api.css'],
 })
 export class PokeAPI {
-  // Minimal handler to satisfy template binding `(click)="searchPokemon(...)"`.
-  // Replace with real API logic when ready.
-  searchPokemon(query: string | undefined) {
-    console.log('searchPokemon called with:', query);
-    // placeholder: you can call a service or fetch the Pokemon data here
+  pokeService = inject(PokeService);
+
+  async searchClick(value: string) {
+    await this.pokeService.getPoke(value);
+  }
+
+  trackByIndex(_index: number, _item: any) {
+    return _index;
   }
 }

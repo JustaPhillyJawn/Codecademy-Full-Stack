@@ -1,0 +1,16 @@
+<!-- PokeDex component template (fragment) -->
+<div class="wrapper">
+    <div class="search-row">
+        <input
+            #pokeInput
+            placeholder="Enter Pokemon Name/Number" />
+        <button class="btn" (click)="searchClick(pokeInput.value)">Enter</button>
+    </div>
+
+    <div class="results">
+        <div *ngFor="let pokemon of pokeService.pokemons; let i = index; trackBy: trackByIndex" class="card">
+            <p class="name">{{ pokemon.name }}</p>
+            <p class="meta"><span class="type-badge">{{ pokemon.type }}</span></p>
+        </div>
+    </div>
+</div>
