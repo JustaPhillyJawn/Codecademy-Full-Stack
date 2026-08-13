@@ -9,8 +9,22 @@
 
     <div class="results">
         <div *ngFor="let pokemon of pokeService.pokemons; let i = index; trackBy: trackByIndex" class="card">
-            <p class="name">{{ pokemon.name }}</p>
-            <p class="meta"><span class="type-badge">{{ pokemon.type }}</span></p>
+            <div class="card-top">
+                <img class="sprite" [src]="pokemon.image" [alt]="pokemon.name + ' sprite'" *ngIf="pokemon.image" />
+                <div class="card-info">
+                    <p class="name">{{ pokemon.name }}</p>
+                    <div class="types">
+                        <span class="type-badge" *ngFor="let t of pokemon.types">{{ t }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="attacks">
+                <strong>Attacks</strong>
+                <ul>
+                    <li *ngFor="let m of pokemon.moves">{{ m }}</li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

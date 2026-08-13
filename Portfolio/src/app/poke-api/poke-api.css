@@ -83,6 +83,25 @@ html,body { height:100%; }
 	font-size:0.8rem;
 }
 
+/* Card layout updates for image, types and attacks */
+.card{
+	background: var(--card);
+	color:#0b1220;
+	padding:12px;
+	border-radius:12px;
+	box-shadow: 0 10px 30px rgba(2,6,23,0.35);
+	width:320px;
+	max-width:92vw;
+	margin:10px 0;
+}
+.card-top{ display:flex; gap:12px; align-items:center; }
+.sprite{ width:84px; height:84px; object-fit:contain; background:transparent; }
+.card-info .name{ font-weight:800; font-size:1.05rem; margin:0 0 6px 0; }
+.types{ display:flex; gap:8px; flex-wrap:wrap; }
+.attacks{ margin-top:10px; color:#334155; }
+.attacks ul{ margin:6px 0 0 0; padding-left:18px; }
+.attacks li{ margin:4px 0; font-size:0.95rem; }
+
 /* Make layout responsive and centered */
 @media(min-width:760px){
 	.wrapper{
