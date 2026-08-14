@@ -5,8 +5,6 @@ import { firstValueFrom } from 'rxjs';
 interface Pokemon {
     name: string;
     image: string;
-    types: string[];
-    moves: string[];
 }
 
 @Injectable({
@@ -17,16 +15,13 @@ export class PokeService {
     pokemons: Pokemon [] = [];
 
     async getPoke(value: string) {
-        const response = await firstValueFrom(this.http.get('https://pokeapi.co/api/v2/pokemon/' + value)) as any;
+        const response = await firstValueFrom(this.http.get('https://pokeapi.co/api/v2/pokemon/' + value)) as Pokemon;
 
         // Normalize response into our lightweight `Pokemon` shape
-        const pokemon: Pokemon = {
+        const pokemon = {
             name: response.name || value,
-            image: response.sprites?.front_default || '',
-            types: Array.isArray(response.types) ? response.types.map((t: any) => t.type?.name || '') : [],
-            moves: Array.isArray(response.moves) ? response.moves.slice(0, 8).map((m: any) => m.move?.name || '') : []
+            image: response.sprites.front_default || '',
         };
-
         this.pokemons.push(pokemon);
     }
 }
