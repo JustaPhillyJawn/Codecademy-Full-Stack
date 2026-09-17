@@ -1,0 +1,148 @@
+<main class="board-page">
+  <header class="board-header">
+    <div>
+      <p class="eyebrow">Workspace</p>
+      <h1>{{ board()?.title ?? (boardNotFound() ? 'Board not found' : 'Loading...') }}</h1>
+      @if (!boardNotFound()) {
+        <p class="board-date">Created {{ getBoardDate() | date: 'MMM d, y' }}</p>
+      }
+    </div>
+
+    <div class="board-actions">
+      <button class="button button-secondary" routerLink="/">Home</button>
+      @if (board(); as currentBoard) {
+        <button class="button button-danger" (click)="deleteBoard(currentBoard.id)">Delete Board</button>
+      }
+      <button class="button button-quiet" (click)="clearBoard()">Clear tasks</button>
+    </div>
+  </header>
+
+  <section class="task-composer" aria-labelledby="new-task-heading">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Capture the next step</p>
+        <h2 id="new-task-heading">Add a task</h2>
+      </div>
+      <span class="task-count">{{ tasks().length }} total</span>
+    </div>
+
+    <form class="task-form" [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+      <div class="field field-title">
+        <label for="title">Title</label>
+        <input id="title" type="text" formControlName="title" placeholder="What needs doing?" />
+        @if (taskForm.controls.title.touched && taskForm.controls.title.invalid) {
+          <p class="error">A title is required (2 characters minimum).</p>
+        }
+      </div>
+
+      <div class="field field-details">
+        <label for="details">Details</label>
+        <textarea id="details" rows="2" formControlName="details" placeholder="Add useful context"></textarea>
+      </div>
+
+      <div class="field field-color">
+        <label for="color">Note color</label>
+        <select id="color" formControlName="color">
+          <option value="yellow">Yellow</option>
+          <option value="pink">Pink</option>
+          <option value="blue">Blue</option>
+          <option value="green">Green</option>
+        </select>
+      </div>
+
+      <button class="button button-primary field-submit" type="submit" [disabled]="taskForm.invalid">Add task</button>
+    </form>
+  </section>
+
+  <section class="status-board" aria-label="Tasks by status">
+    <div class="status-column status-todo">
+      <header class="column-header">
+        <div>
+          <span class="status-marker"></span>
+          <h2>To do</h2>
+        </div>
+        <span class="column-count">{{ tasksForStatus('todo').length }}</span>
+      </header>
+      <div class="task-list">
+        @for (task of tasksForStatus('todo'); track task.id) {
+          <article class="task-card" [style.--note-color]="task.color">
+            <div class="task-card-topline">
+              <span class="color-swatch" [style.background-color]="task.color"></span>
+              <span class="task-status-label">To do</span>
+            </div>
+            <h3>{{ task.title }}</h3>
+            @if (task.details) {
+              <p>{{ task.details }}</p>
+            }
+            <div class="task-card-actions">
+              <button class="text-button" (click)="editTask(task.id)">Edit</button>
+              <button class="text-button text-button-danger" (click)="deleteTask(task.id)">Delete</button>
+            </div>
+          </article>
+        } @empty {
+          <p class="empty-state">Nothing queued yet.</p>
+        }
+      </div>
+    </div>
+
+    <div class="status-column status-progress">
+      <header class="column-header">
+        <div>
+          <span class="status-marker"></span>
+          <h2>In progress</h2>
+        </div>
+        <span class="column-count">{{ tasksForStatus('inProgress').length }}</span>
+      </header>
+      <div class="task-list">
+        @for (task of tasksForStatus('inProgress'); track task.id) {
+          <article class="task-card" [style.--note-color]="task.color">
+            <div class="task-card-topline">
+              <span class="color-swatch" [style.background-color]="task.color"></span>
+              <span class="task-status-label">In progress</span>
+            </div>
+            <h3>{{ task.title }}</h3>
+            @if (task.details) {
+              <p>{{ task.details }}</p>
+            }
+            <div class="task-card-actions">
+              <button class="text-button" (click)="editTask(task.id)">Edit</button>
+              <button class="text-button text-button-danger" (click)="deleteTask(task.id)">Delete</button>
+            </div>
+          </article>
+        } @empty {
+          <p class="empty-state">Work in progress will appear here.</p>
+        }
+      </div>
+    </div>
+
+    <div class="status-column status-done">
+      <header class="column-header">
+        <div>
+          <span class="status-marker"></span>
+          <h2>Done</h2>
+        </div>
+        <span class="column-count">{{ tasksForStatus('done').length }}</span>
+      </header>
+      <div class="task-list">
+        @for (task of tasksForStatus('done'); track task.id) {
+          <article class="task-card" [style.--note-color]="task.color">
+            <div class="task-card-topline">
+              <span class="color-swatch" [style.background-color]="task.color"></span>
+              <span class="task-status-label">Done</span>
+            </div>
+            <h3>{{ task.title }}</h3>
+            @if (task.details) {
+              <p>{{ task.details }}</p>
+            }
+            <div class="task-card-actions">
+              <button class="text-button" (click)="editTask(task.id)">Edit</button>
+              <button class="text-button text-button-danger" (click)="deleteTask(task.id)">Delete</button>
+            </div>
+          </article>
+        } @empty {
+          <p class="empty-state">Completed work will appear here.</p>
+        }
+      </div>
+    </div>
+  </section>
+</main>

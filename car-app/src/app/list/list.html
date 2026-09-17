@@ -1,0 +1,36 @@
+<div>
+    <form [formGroup]="carForm"
+        (ngSubmit)="onSubmit()"
+        >
+
+    <label for="car-name">Car Name</label>
+    <input id="car-name" formControlName="name" placeholder="Car Name">
+
+    <label for="car-image">Image Path</label>
+    <input id="car-image" formControlName="img" placeholder="Image Path">
+
+    <button type="submit">
+        Create Car
+    </button>
+
+</form>
+</div>
+
+<div>
+    @for (car of carService.cars(); track car.name) {
+
+        <p>{{ car.name }}</p>
+
+        <button [routerLink]="['/cars', car.id]">View Car</button>
+        }
+</div>
+<div>
+    <button (click)= "onDelete()"> Delete Car </button>
+
+<div>
+    @if (currentCar === null) {
+
+  <p>Select a car above to view its details.</p>
+
+}
+</div>

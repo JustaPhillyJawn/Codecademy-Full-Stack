@@ -1,0 +1,52 @@
+<main class="edit-page">
+	<a class="back-link" (click)="cancel()">Back to board</a>
+	<section class="edit-shell">
+		<header class="edit-header">
+			<div>
+				<p class="eyebrow">Task details</p>
+				<h1>Edit task</h1>
+				<p>Keep the next step clear and current.</p>
+			</div>
+			<span class="edit-mark">✦</span>
+		</header>
+
+		<form class="edit-form" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+			<div class="field field-wide">
+				<label for="title">Title</label>
+				<input id="title" type="text" formControlName="title" placeholder="Task title" />
+				@if (editForm.controls.title.touched && editForm.controls.title.invalid) {
+					<p class="error">A title is required (2 characters minimum).</p>
+				}
+			</div>
+
+			<div class="field field-wide">
+				<label for="details">Details</label>
+				<textarea id="details" rows="5" formControlName="details" placeholder="What should you remember?"></textarea>
+			</div>
+
+			<div class="field">
+				<label for="color">Note color</label>
+				<select id="color" formControlName="color">
+					<option value="yellow">Yellow</option>
+					<option value="pink">Pink</option>
+					<option value="blue">Blue</option>
+					<option value="green">Green</option>
+				</select>
+			</div>
+
+			<div class="field">
+				<label for="status">Status</label>
+				<select id="status" formControlName="status">
+					<option value="todo">To Do</option>
+					<option value="inProgress">In Progress</option>
+					<option value="done">Done</option>
+				</select>
+			</div>
+
+			<div class="edit-actions">
+				<button class="secondary-button" type="button" (click)="cancel()">Cancel</button>
+				<button class="primary-button" type="submit" [disabled]="editForm.invalid || !task()">Save changes</button>
+			</div>
+		</form>
+	</section>
+</main>

@@ -1,0 +1,50 @@
+<main class="home-page">
+  <header class="home-header">
+    <div>
+      <p class="eyebrow">StickyBoard</p>
+      <h1>Get Your Shift Together.</h1>
+      <p class="intro">A calm place to collect projects, keep momentum, and see what is next.</p>
+    </div>
+    <span class="board-total">{{ boards().length }} boards</span>
+  </header>
+
+  <section class="create-panel" aria-labelledby="create-heading">
+    <div>
+      <p class="eyebrow">Start a new space</p>
+      <h2 id="create-heading">Create a board</h2>
+      <p class="panel-copy">Give your next project a clear home.</p>
+    </div>
+    <div class="create-controls">
+      <label class="sr-only" for="board-title">Board title</label>
+      <input #boardTitleInput id="board-title" type="text" placeholder="Board title" />
+      <button class="primary-button" type="button" (click)="createNewBoard(boardTitleInput.value)">Create board</button>
+    </div>
+  </section>
+
+  <section class="board-directory" aria-labelledby="boards-heading">
+    <div class="directory-heading">
+      <div>
+        <p class="eyebrow">Your spaces</p>
+        <h2 id="boards-heading">Boards</h2>
+      </div>
+      <span class="directory-rule"></span>
+    </div>
+
+    <div class="board-grid">
+      @for (board of boards(); track board.id) {
+        <button class="board-card" type="button" (click)="openBoard(board.id)">
+          <span class="board-card-mark">↗</span>
+          <span class="board-card-title">{{ board.title }}</span>
+          <span class="board-card-action">Open board</span>
+        </button>
+      } @empty {
+        <div class="empty-directory">
+          <div>
+            <h3>No boards yet</h3>
+            <p>Your first workspace will appear here.</p>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+</main>

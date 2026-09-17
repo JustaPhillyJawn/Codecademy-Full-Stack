@@ -1,0 +1,8 @@
+{{getCars()?.length}}
+
+@for (car of getCars(); track car.id) {
+    <p>{{car.make}} {{car.model}}</p>
+    <button (click)="deleteCar(car)"> Delete </button>
+    <button routerLink="/cars/{{car.id}}"> {{ car.make }} — {{ car.model }} </button>
+}
+

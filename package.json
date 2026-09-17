@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@angular/fire": "^21.0.0-rc.0-canary.fb6796b",
+    "firebase": "^12.4.0"
+  }
+}

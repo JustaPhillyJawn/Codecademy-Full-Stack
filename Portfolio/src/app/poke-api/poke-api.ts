@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { NgForOf } from '@angular/common';
+import { NgForOf, NgIf } from '@angular/common';
 import { PokeService } from '../poke-service';
 
 @Component({
   selector: 'app-poke-api',
   standalone: true,
-  imports: [NgForOf],
+  imports: [NgForOf, NgIf],
   templateUrl: './poke-api.html',
   styleUrls: ['./poke-api.css'],
 })

@@ -21,7 +21,7 @@ export class PokeService {
         const pokemon = {
             name: response.name || value,
             image: response.sprites.front_default || '',
-        };
+            };
         this.pokemons.push(pokemon);
     }
 }

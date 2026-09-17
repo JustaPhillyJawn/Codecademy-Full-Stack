@@ -1,0 +1,8 @@
+<p>gfjlklkjsdaglkjsdag</p>
+
+{{getCatsfromDB()?.length}}
+
+@for (cat of getCatsfromDB(); track cat.id) {
+    <p>{{cat.name}} {{cat.color}} {{cat.breed}}</p>
+    
+}

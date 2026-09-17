@@ -1,0 +1,15 @@
+<p>Users:</p>
+
+@for (user of users(); track user.id) {
+  <div>
+    <span>{{ user.firstName }} {{ user.lastName }}</span> <button (click)="selectUser(user)">Select</button> <br />
+  </div>
+}
+
+@if(curUser == null){
+    <p>No User Selected</p>
+
+}@else {
+    <p> {{curUser.firstName}} {{curUser.lastName}} </p>
+    <button (click)="onClear()">Clear</button>
+ }

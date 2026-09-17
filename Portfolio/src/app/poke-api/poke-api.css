@@ -31,8 +31,12 @@ html,body { height:100%; }
 	border: none;
 	box-shadow: 0 6px 18px rgba(2,6,23,0.5), inset 0 -2px 6px rgba(255,255,255,0.02);
 	font-size:16px;
-	background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+	background: rgba(100, 100, 100, 0.5);
 	color:#fff;
+}
+
+.wrapper input[placeholder]::placeholder, .wrapper input[type='text']::placeholder{
+	color: rgba(255,255,255,0.7);
 }
 
 .wrapper .btn{
@@ -95,7 +99,7 @@ html,body { height:100%; }
 	margin:10px 0;
 }
 .card-top{ display:flex; gap:12px; align-items:center; }
-.sprite{ width:84px; height:84px; object-fit:contain; background:transparent; }
+.sprite{ width:84px; height:84px; object-fit:contain; background:#f0f0f0; border-radius:8px; }
 .card-info .name{ font-weight:800; font-size:1.05rem; margin:0 0 6px 0; }
 .types{ display:flex; gap:8px; flex-wrap:wrap; }
 .attacks{ margin-top:10px; color:#334155; }

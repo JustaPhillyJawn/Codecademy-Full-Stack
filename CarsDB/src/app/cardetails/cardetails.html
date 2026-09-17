@@ -1,0 +1,5 @@
+<form [formGroup]="formGroup" (ngSubmit)="editCar(carId())">
+    <input placeholder={{car.make}} formControlName="make">
+    <input placeholder={{car.model}} formControlName="model">
+    <button type="submit">Edit</button>
+</form>

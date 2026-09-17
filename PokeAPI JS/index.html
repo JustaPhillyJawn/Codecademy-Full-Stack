@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="styles.css" />
+    <script src="index.js" type="module" defer></script>
+  
+  
+    <main class="app">
+      <header class="header">
+        <h1 class="title">Pokédex</h1>
+        <p class="subtitle">Search Pokémon by name or number</p>
+      </header>
+
+      <div class="search">
+        <label for="input" class="visually-hidden">Pokémon name or number</label>
+        <input id="input" placeholder="e.g. pikachu or 25" />
+        <button id="searchBtn">Search</button>
+      </div>
+
+      <div id="card" class="card">
+        <div class="pokemonImg">
+          <img id="pokemon-image" src="" alt="Pokemon sprite" />
+        </div>
+
+        <h2 class="pokemon-name" aria-live="polite"></h2>
+        <div class="types" aria-hidden="false"></div>
+        <div class="pokemon-info"></div>
+      </div>
+
+      <footer class="footer">Data from <a href="https://pokeapi.co" target="_blank" rel="noopener">PokeAPI</a></footer>
+    </main>
+  
