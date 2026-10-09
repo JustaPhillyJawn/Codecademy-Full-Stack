@@ -22,7 +22,6 @@ export class TaskService {
   }
 
   deleteTask(id: string) {
-    console.log("Deleted:", id);
     return deleteDoc(doc(this.firestore, 'task', id));
   }
 
@@ -41,7 +40,6 @@ export class TaskService {
   }
   
   editTask(id: string, changes: Partial<NewTask>) {
-    console.log('SERVICE updating', id, changes);
     return updateDoc(doc(this.firestore, 'task', id), changes);
   }
 

@@ -35,6 +35,8 @@ button {
 
 .home-header,
 .directory-heading,
+.auth-panel,
+.auth-controls,
 .create-panel,
 .create-controls,
 .board-card,
@@ -88,6 +90,74 @@ h1 {
 	font-size: 0.78rem;
 	font-weight: 800;
 	white-space: nowrap;
+}
+
+.auth-panel {
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+	margin-bottom: 18px;
+	padding: 20px 24px;
+	border: 1px solid var(--line);
+	border-radius: 8px;
+	background: #fff;
+}
+
+.auth-panel h2 {
+	margin-bottom: 0;
+	font-size: 1.2rem;
+}
+
+.auth-controls {
+	align-items: center;
+	justify-content: flex-end;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.auth-controls input {
+	width: 180px;
+	height: 40px;
+	border-color: var(--line);
+	color: var(--ink);
+	background: var(--paper);
+}
+
+.auth-controls input::placeholder {
+	color: var(--muted);
+}
+
+.auth-controls input:focus {
+	border-color: var(--accent);
+	box-shadow: 0 0 0 3px rgba(209, 109, 66, 0.14);
+}
+
+.secondary-button,
+.text-button {
+	height: 40px;
+	border: 0;
+	border-radius: 5px;
+	font-size: 0.8rem;
+	font-weight: 800;
+}
+
+.secondary-button {
+	padding: 0 15px;
+	color: #fff;
+	background: var(--ink);
+}
+
+.text-button {
+	padding: 0 8px;
+	color: var(--accent);
+	background: transparent;
+}
+
+.auth-error {
+	flex-basis: 100%;
+	margin: 4px 0 0;
+	color: #a23e32;
+	font-size: 0.8rem;
 }
 
 .create-panel {

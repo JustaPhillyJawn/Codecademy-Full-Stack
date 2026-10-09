@@ -1,0 +1,133 @@
+<section class="reference-view" aria-labelledby="reference-title">
+  <header class="reference-heading">
+    <div>
+      <p class="section-tag">On the battlefield</p>
+      <h2 id="reference-title">Battle reference</h2>
+      @if (selectedList(); as list) {
+        <p class="reference-summary">{{ list.name }} · {{ units().length }} units · {{ totalPoints() }} pts</p>
+      }
+    </div>
+  </header>
+
+  @if (lists().length > 0) {
+    <nav class="reference-lists" aria-label="Saved army lists">
+      @for (list of lists(); track list.id) {
+        <button
+          type="button"
+          class="reference-list-tab"
+          [class.active]="selectedListId() === list.id"
+          [attr.aria-pressed]="selectedListId() === list.id"
+          (click)="listSelected.emit(list.id)"
+        >
+          <span>{{ list.name }}</span>
+          <small>{{ listPoints(list) }} pts</small>
+        </button>
+      }
+    </nav>
+  }
+
+  @if (!selectedList()) {
+    <p class="reference-empty">Create an army list in the builder to see its in-game reference cards.</p>
+  } @else if (loading()) {
+    <p class="reference-empty">Loading complete unit cards...</p>
+  } @else if (units().length === 0) {
+    <p class="reference-empty">This list has no units yet.</p>
+  } @else {
+    <div class="reference-card-list">
+      @for (unit of units(); track unit.id ?? unit.name) {
+        <article class="reference-card">
+          <header class="reference-card-heading">
+            <div>
+              <p class="reference-faction">{{ unit.faction }} · {{ unit.role }}</p>
+              <h3>{{ unit.name }}</h3>
+            </div>
+            <strong class="reference-points">{{ unit.points }} pts</strong>
+          </header>
+
+          <div class="reference-meta">
+            @if (compositionLabel(unit)) {
+              <span>{{ compositionLabel(unit) }}</span>
+            }
+            @if (unit.invulnerableSave) {
+              <span>Invulnerable save {{ unit.invulnerableSave }}</span>
+            }
+          </div>
+
+          @if (unit.stats) {
+            <dl class="reference-stats" aria-label="Unit characteristics">
+              <div><dt>Move</dt><dd>{{ unit.stats.movement || '-' }}</dd></div>
+              <div><dt>Toughness</dt><dd>{{ unit.stats.toughness || '-' }}</dd></div>
+              <div><dt>Save</dt><dd>{{ unit.stats.save || '-' }}</dd></div>
+              <div><dt>Wounds</dt><dd>{{ unit.stats.wounds || '-' }}</dd></div>
+              <div><dt>Leadership</dt><dd>{{ unit.stats.leadership || '-' }}</dd></div>
+              <div><dt>Objective Control</dt><dd>{{ unit.stats.objectiveControl || '-' }}</dd></div>
+            </dl>
+          }
+
+          @if (unit.weapons?.ranged?.length) {
+            <section class="reference-section">
+              <h4>Ranged weapons</h4>
+              <div class="weapon-table-scroll">
+                <table>
+                  <thead><tr><th>Weapon</th><th>Range</th><th>A</th><th>BS</th><th>S</th><th>AP</th><th>D</th><th>Keywords</th></tr></thead>
+                  <tbody>
+                    @for (weapon of unit.weapons.ranged; track $index) {
+                      <tr><th scope="row">{{ weapon.name }}</th><td>{{ weapon.range }}</td><td>{{ weapon.attacks }}</td><td>{{ weapon.skill }}</td><td>{{ weapon.strength }}</td><td>{{ weapon.ap }}</td><td>{{ weapon.damage }}</td><td>{{ weapon.keywords }}</td></tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          }
+
+          @if (unit.weapons?.melee?.length) {
+            <section class="reference-section">
+              <h4>Melee weapons</h4>
+              <div class="weapon-table-scroll">
+                <table>
+                  <thead><tr><th>Weapon</th><th>Range</th><th>A</th><th>WS</th><th>S</th><th>AP</th><th>D</th><th>Keywords</th></tr></thead>
+                  <tbody>
+                    @for (weapon of unit.weapons.melee; track $index) {
+                      <tr><th scope="row">{{ weapon.name }}</th><td>{{ weapon.range }}</td><td>{{ weapon.attacks }}</td><td>{{ weapon.skill }}</td><td>{{ weapon.strength }}</td><td>{{ weapon.ap }}</td><td>{{ weapon.damage }}</td><td>{{ weapon.keywords }}</td></tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          }
+
+          @if (unit.abilities.length > 0) {
+            <section class="reference-section ability-details">
+              <h4>Abilities</h4>
+              @for (ability of unit.abilities; track $index) {
+                <p>{{ ability }}</p>
+              }
+            </section>
+          }
+
+          @if (unit.specialRules?.length) {
+            <section class="reference-section">
+              <h4>Special rules</h4>
+              <ul class="reference-tags">
+                @for (rule of unit.specialRules; track $index) {
+                  <li>{{ rule }}</li>
+                }
+              </ul>
+            </section>
+          }
+
+          @if (unit.keywords?.length) {
+            <section class="reference-section">
+              <h4>Keywords</h4>
+              <ul class="reference-tags keyword-tags">
+                @for (keyword of unit.keywords; track $index) {
+                  <li>{{ keyword }}</li>
+                }
+              </ul>
+            </section>
+          }
+        </article>
+      }
+    </div>
+  }
+</section>

@@ -1,0 +1,40 @@
+:root {
+	color-scheme: dark;
+	--void: #090908;
+	--iron: #171716;
+	--iron-raised: #211f1c;
+	--iron-edge: #51483b;
+	--brass: #9e8052;
+	--brass-bright: #c4a46b;
+	--parchment: #e1d2b6;
+	--muted-ash: #a79d8c;
+	--blood: #792c2b;
+	--warp: #55405f;
+}
+
+html,
+body {
+	min-height: 100%;
+	margin: 0;
+}
+
+body {
+	background-color: var(--void);
+	background-image:
+		radial-gradient(ellipse at 50% -12%, rgba(96, 43, 36, 0.3), transparent 44%),
+		radial-gradient(ellipse at 12% 86%, rgba(65, 48, 70, 0.12), transparent 32%),
+		repeating-linear-gradient(0deg, rgba(232, 218, 190, 0.012) 0 1px, transparent 1px 4px),
+		linear-gradient(180deg, #11110f, #080808 72%);
+	color: var(--parchment);
+	font-family: Georgia, "Times New Roman", serif;
+}
+
+button,
+input {
+	font: inherit;
+}
+
+:focus-visible {
+	outline: 2px solid var(--brass-bright);
+	outline-offset: 3px;
+}

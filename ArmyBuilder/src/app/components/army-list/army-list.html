@@ -1,0 +1,66 @@
+<aside class="panel army-panel">
+  <div class="panel-header">
+    <div>
+      <p class="section-tag">Theater of War</p>
+      <h2>My army list</h2>
+    </div>
+  </div>
+
+  <div class="list-tools">
+    <label class="list-name-field">
+      <span>List name</span>
+      <input
+        type="text"
+        [value]="listNameDraft"
+        (input)="listNameDraft = $any($event.target).value"
+        placeholder="Name the new or selected list"
+      />
+    </label>
+
+    <div class="button-row">
+      <button type="button" class="secondary-button" (click)="createNamedList()">New list</button>
+      <button type="button" class="secondary-button" [disabled]="!selectedListId" (click)="renameSelectedList()">Rename list</button>
+      <button type="button" class="danger-button" (click)="deleteList.emit()">Delete list</button>
+    </div>
+  </div>
+
+  <div class="list-selector">
+    @for (name of listNames; track name) {
+      <button
+        type="button"
+        class="list-chip"
+        [class.active]="name === listName"
+        (click)="selectList.emit(name)"
+      >
+        {{ name }}
+      </button>
+    }
+  </div>
+
+  <div class="army-list">
+    @for (unit of armyList; track unit.id ?? unit.name; let i = $index) {
+      <div class="army-item">
+        <div>
+          <strong>{{ unit.name }}</strong>
+          <small>{{ unit.role }}</small>
+          @if (unit.stats) {
+            <dl class="army-unit-stats" aria-label="Unit characteristics">
+              <div><dt title="Movement">M</dt><dd>{{ unit.stats.movement || '-' }}</dd></div>
+              <div><dt title="Toughness">T</dt><dd>{{ unit.stats.toughness || '-' }}</dd></div>
+              <div><dt title="Save">Sv</dt><dd>{{ unit.stats.save || '-' }}</dd></div>
+              <div><dt title="Wounds">W</dt><dd>{{ unit.stats.wounds || '-' }}</dd></div>
+              <div><dt title="Leadership">Ld</dt><dd>{{ unit.stats.leadership || '-' }}</dd></div>
+              <div><dt title="Objective Control">OC</dt><dd>{{ unit.stats.objectiveControl || '-' }}</dd></div>
+            </dl>
+          }
+        </div>
+        <div class="item-controls">
+          <span>{{ unit.points }} pts</span>
+          <button type="button" class="remove-unit-button" (click)="removeUnit.emit(i)">Remove</button>
+        </div>
+      </div>
+    } @empty {
+      <p class="empty-state">Your warband is currently empty. Recruit a unit to begin the campaign.</p>
+    }
+  </div>
+</aside>

@@ -1,0 +1,207 @@
+.panel {
+  background:
+    repeating-linear-gradient(0deg, rgba(226, 209, 177, 0.014) 0 1px, transparent 1px 5px),
+    linear-gradient(145deg, rgba(35, 33, 29, 0.98), rgba(11, 11, 10, 0.98) 72%);
+  border: 1px solid rgba(158, 128, 82, 0.48);
+  border-radius: 3px;
+  padding: 18px;
+  box-shadow: inset 0 1px rgba(232, 218, 190, 0.06), 0 18px 30px rgba(0, 0, 0, 0.48);
+}
+
+.panel-header {
+  margin-bottom: 16px;
+}
+
+.panel-header h2 {
+  margin: 0;
+  color: #e5d4b5;
+  font-size: 1.55rem;
+  text-transform: uppercase;
+}
+
+.section-tag {
+  margin: 0 0 8px;
+  color: var(--brass-bright);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.search-box {
+  display: block;
+  margin-bottom: 18px;
+  color: #d2c2a6;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.search-box input {
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px 14px;
+  border: 1px solid rgba(158, 128, 82, 0.52);
+  border-radius: 2px;
+  background: linear-gradient(180deg, #0a0a09, #181613);
+  color: var(--parchment);
+  font-size: 0.96rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.search-box input:focus {
+  outline: 2px solid rgba(196, 164, 107, 0.72);
+  outline-offset: 2px;
+}
+
+.faction-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 0 0 18px;
+}
+
+.faction-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: auto;
+  padding: 7px 9px;
+  border: 1px solid rgba(158, 128, 82, 0.37);
+  border-radius: 2px;
+  background: linear-gradient(180deg, #26231e, #11110f);
+  color: #e1d2b6;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.faction-chip small {
+  color: #b99b68;
+  font-size: 0.68rem;
+}
+
+.faction-chip.active {
+  border-color: rgba(196, 164, 107, 0.76);
+  background: linear-gradient(180deg, rgba(101, 42, 35, 0.94), rgba(45, 23, 21, 0.98));
+  color: #f0dfbf;
+}
+
+.unit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.unit-card {
+  padding: 15px;
+  border: 1px solid rgba(158, 128, 82, 0.32);
+  border-radius: 3px;
+  background:
+    repeating-linear-gradient(0deg, rgba(226, 209, 177, 0.012) 0 1px, transparent 1px 5px),
+    linear-gradient(145deg, rgba(39, 36, 31, 0.96), rgba(15, 15, 13, 0.98) 74%);
+  box-shadow: inset 0 1px rgba(232, 218, 190, 0.035), 0 7px 14px rgba(0, 0, 0, 0.3);
+}
+
+.unit-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.unit-head h3 {
+  margin: 0;
+  color: #e5d4b5;
+  font-size: 1.22rem;
+  text-transform: uppercase;
+}
+
+.unit-head p {
+  margin: 5px 0 0;
+  color: var(--muted-ash);
+}
+
+.points-pill {
+  flex: 0 0 auto;
+  padding: 6px 9px;
+  border: 1px solid rgba(173, 119, 72, 0.64);
+  border-radius: 2px;
+  background: rgba(83, 35, 28, 0.34);
+  color: #e4c994;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.unit-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(48px, 1fr));
+  gap: 6px;
+  margin: 14px 0 0;
+  padding: 10px 0;
+  border-top: 1px solid rgba(158, 128, 82, 0.32);
+  border-bottom: 1px solid rgba(158, 128, 82, 0.32);
+}
+
+.unit-stats div {
+  min-width: 0;
+  text-align: center;
+}
+
+.unit-stats dt {
+  color: var(--muted-ash);
+  font-size: 0.64rem;
+  text-transform: uppercase;
+}
+
+.unit-stats dd {
+  margin: 3px 0 0;
+  color: #e4c994;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.ability-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 14px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ability-list li {
+  padding: 6px 9px;
+  border: 1px solid rgba(158, 128, 82, 0.3);
+  border-radius: 2px;
+  background: rgba(117, 79, 38, 0.16);
+  color: #d9c7a6;
+  font-size: 0.72rem;
+}
+
+button {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid rgba(171, 119, 74, 0.48);
+  border-radius: 2px;
+  background: linear-gradient(180deg, #672924, #351a18);
+  color: #ead9bc;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: inset 0 1px rgba(238, 216, 182, 0.1), 0 5px 12px rgba(0, 0, 0, 0.35);
+}
+
+button:hover {
+  filter: brightness(1.16);
+}
+
+.empty-state {
+  margin: 0;
+  padding: 14px 0;
+  color: var(--muted-ash);
+  line-height: 1.5;
+}

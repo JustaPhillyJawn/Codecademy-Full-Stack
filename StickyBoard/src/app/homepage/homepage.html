@@ -8,6 +8,32 @@
     <span class="board-total">{{ boards().length }} boards</span>
   </header>
 
+  <section class="auth-panel" aria-labelledby="auth-heading">
+    @if (authService.user(); as user) {
+      <div>
+        <p class="eyebrow">Signed in</p>
+        <h2 id="auth-heading">{{ user.email }}</h2>
+      </div>
+      <button class="secondary-button" type="button" (click)="signOut()">Sign out</button>
+    } @else {
+      <div>
+        <p class="eyebrow">Your account</p>
+        <h2 id="auth-heading">Sign in to StickyBoard</h2>
+      </div>
+      <form class="auth-controls" (submit)="$event.preventDefault(); authenticate(emailInput.value, passwordInput.value, 'sign-in')">
+        <label class="sr-only" for="auth-email">Email</label>
+        <input #emailInput id="auth-email" type="email" placeholder="Email" required />
+        <label class="sr-only" for="auth-password">Password</label>
+        <input #passwordInput id="auth-password" type="password" placeholder="Password" required minlength="6" />
+        <button class="secondary-button" type="submit">Sign in</button>
+        <button class="text-button" type="button" (click)="authenticate(emailInput.value, passwordInput.value, 'sign-up')">Create account</button>
+      </form>
+    }
+    @if (authError()) {
+      <p class="auth-error" role="alert">{{ authError() }}</p>
+    }
+  </section>
+
   <section class="create-panel" aria-labelledby="create-heading">
     <div>
       <p class="eyebrow">Start a new space</p>

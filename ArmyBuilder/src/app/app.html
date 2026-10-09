@@ -1,0 +1,85 @@
+<main class="page-shell" [class.reference-active]="activeView() === 'reference'">
+  <div class="grim-overlay"></div>
+
+  <header class="topbar">
+    <div class="brand-block">
+      <p class="eyebrow">Warhammer 40,000</p>
+      <h1>ArmyBuilder</h1>
+    </div>
+
+    <div class="topbar-actions">
+      <div class="auth-box">
+        <span class="auth-label">{{ userLabel() }}</span>
+        <button type="button" class="auth-button" (click)="handleAuthToggle()">
+          {{ isSignedIn() ? 'Sign out' : 'Sign in' }}
+        </button>
+        @if (authError()) {
+          <p class="auth-error" role="alert">{{ authError() }}</p>
+        }
+      </div>
+
+      <div class="points-box">
+        <span>Command Total</span>
+        <strong>{{ totalPoints() }} pts</strong>
+      </div>
+    </div>
+  </header>
+
+  <nav class="view-menu" role="tablist" aria-label="Army views">
+    <button
+      type="button"
+      role="tab"
+      [attr.aria-selected]="activeView() === 'builder'"
+      [class.active]="activeView() === 'builder'"
+      (click)="showBuilder()"
+    >
+      Army builder
+    </button>
+    <button
+      type="button"
+      role="tab"
+      [attr.aria-selected]="activeView() === 'reference'"
+      [class.active]="activeView() === 'reference'"
+      (click)="showBattleReference()"
+    >
+      Battle reference
+    </button>
+  </nav>
+
+  @if (activeView() === 'builder') {
+    <div class="layout">
+      <app-unit-roster
+        [units]="availableUnits()"
+        [searchTerm]="searchTerm()"
+        [factions]="factions()"
+        [selectedFaction]="selectedFaction()"
+        [loading]="isLoadingUnits()"
+        (searchChanged)="onSearchChange($event)"
+        (factionSelected)="loadFactionUnits($event)"
+        (addUnit)="addToArmy($event)"
+      ></app-unit-roster>
+
+      <app-army-list
+        [armyList]="armyList()"
+        [totalPoints]="totalPoints()"
+        [listName]="selectedListName()"
+        [listNames]="listNames()"
+        [selectedListId]="selectedListId()"
+        (createList)="createNewList($event)"
+        (renameList)="renameSelectedList($event)"
+        (selectList)="selectList($event)"
+        (removeUnit)="removeUnitFromList($event)"
+        (deleteList)="deleteSelectedList()"
+      ></app-army-list>
+    </div>
+  } @else {
+    <app-battle-reference
+      [lists]="armyLists()"
+      [selectedListId]="selectedListId()"
+      [units]="referenceUnits()"
+      [loading]="isLoadingReference()"
+      (listSelected)="selectReferenceList($event)"
+    ></app-battle-reference>
+  }
+
+</main>

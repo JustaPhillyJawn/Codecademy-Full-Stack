@@ -99,7 +99,6 @@ export class BoardComponent {
   async deleteTask(id: string) {
     if (!confirm('Delete this task?')) return;
     await this.taskService.deleteTask(id);
-    console.log("Deleted:", id);
   }
 
   async editTask(id: string) {
@@ -114,7 +113,6 @@ export class BoardComponent {
     if (!confirm('Delete this board?')) return;
     await this.boardService.deleteBoard(id);
     await this.router.navigate(['/']);
-    console.log("Deleted:", id);
   }
 
   async clearBoard() {

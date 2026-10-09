@@ -1,0 +1,75 @@
+<section class="panel roster-panel">
+  <div class="panel-header">
+    <div>
+      <p class="section-tag">Adeptus Catalog</p>
+      <h2>Unit roster</h2>
+    </div>
+  </div>
+
+  <label class="search-box">
+    <span>Search the archive</span>
+    <input
+      type="text"
+      [value]="searchValue() || searchTerm()"
+      (input)="onSearchChange($any($event.target).value)"
+      placeholder="Search this faction's units or abilities"
+      [disabled]="!selectedFaction() || loading()"
+    />
+  </label>
+
+  <div class="faction-filters">
+    @for (faction of factions(); track faction.name) {
+      <button
+        type="button"
+        class="faction-chip"
+        [class.active]="selectedFaction() === faction.name"
+        [attr.aria-pressed]="selectedFaction() === faction.name"
+        (click)="setFactionFilter(faction.name)"
+      >
+        <span>{{ faction.name }}</span>
+        <small>{{ faction.unitCount }}</small>
+      </button>
+    }
+  </div>
+
+  <div class="unit-list">
+    @if (!selectedFaction()) {
+      <p class="empty-state">Choose a faction to load its roster.</p>
+    } @else if (loading()) {
+      <p class="empty-state">Loading {{ selectedFaction() }} units...</p>
+    } @else {
+      @for (unit of filteredUnits(); track unit.id ?? unit.name) {
+        <article class="unit-card">
+          <div class="unit-head">
+            <div>
+              <h3>{{ unit.name }}</h3>
+              <p>{{ unit.faction }} • {{ unit.role }}</p>
+            </div>
+            <span class="points-pill">{{ unit.points }} pts</span>
+          </div>
+
+          @if (unit.stats) {
+            <dl class="unit-stats" aria-label="Unit characteristics">
+              <div><dt title="Movement">M</dt><dd>{{ unit.stats.movement || '-' }}</dd></div>
+              <div><dt title="Toughness">T</dt><dd>{{ unit.stats.toughness || '-' }}</dd></div>
+              <div><dt title="Save">Sv</dt><dd>{{ unit.stats.save || '-' }}</dd></div>
+              <div><dt title="Wounds">W</dt><dd>{{ unit.stats.wounds || '-' }}</dd></div>
+              <div><dt title="Leadership">Ld</dt><dd>{{ unit.stats.leadership || '-' }}</dd></div>
+              <div><dt title="Objective Control">OC</dt><dd>{{ unit.stats.objectiveControl || '-' }}</dd></div>
+            </dl>
+          }
+
+          <ul class="ability-list">
+            @for (ability of unit.abilities; track ability) {
+              <li>{{ ability }}</li>
+            }
+          </ul>
+
+          <button type="button" (click)="addToArmy(unit)">Add to army</button>
+        </article>
+      } @empty {
+        <p class="empty-state">No units match the current intelligence sweep.</p>
+      }
+    }
+  </div>
+</section>
