@@ -45,9 +45,12 @@ export class AuthService {
 
   getDisplayUserLabel(): string {
     if (auth.currentUser && !auth.currentUser.isAnonymous) {
-      return auth.currentUser.email
-        ? `Operative ${auth.currentUser.email}`
-        : 'Authenticated Operative';
+      const displayName = auth.currentUser.displayName?.trim();
+      if (displayName) {
+        return `Commander ${displayName}`;
+      }
+
+      return auth.currentUser.email ? `Commander ${auth.currentUser.email}` : 'Authenticated Commander';
     }
 
     return 'Anonymous Operative';

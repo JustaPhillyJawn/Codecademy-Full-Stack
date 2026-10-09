@@ -10,6 +10,13 @@
   box-sizing: border-box;
 }
 
+input,
+textarea,
+select {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
 .page-shell {
   position: relative;
   max-width: 1380px;

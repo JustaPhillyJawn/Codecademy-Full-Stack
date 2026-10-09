@@ -3,10 +3,11 @@ import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { ArmyListComponent } from './components/army-list/army-list';
 import { BattleReferenceComponent } from './components/battle-reference/battle-reference';
 import { UnitRosterComponent } from './components/unit-roster/unit-roster';
+import { ArmyFaction } from './models/army-faction';
 import { ArmyList, ArmyUnit } from './models/army-unit';
 import { ArmyListService } from './services/army-list.service';
 import { AuthService } from './services/auth.service';
-import { ArmyFaction, UnitCatalogService } from './services/unit-catalog.service';
+import { UnitCatalogService } from './services/unit-catalog.service';
 
 @Component({
   selector: 'app-root',

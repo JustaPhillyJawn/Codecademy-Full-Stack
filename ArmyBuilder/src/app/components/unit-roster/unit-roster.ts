@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, EventEmitter, input, Output, signal } from '@angular/core';
 
+import { ArmyFaction } from '../../models/army-faction';
 import { ArmyUnit } from '../../models/army-unit';
-import { ArmyFaction } from '../../services/unit-catalog.service';
 
 @Component({
   selector: 'app-unit-roster',

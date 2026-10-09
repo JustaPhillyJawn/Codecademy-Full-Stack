@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, catchError, forkJoin, map, of, switchMap } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 
+import { ArmyFaction } from '../models/army-faction';
 import { ArmyUnit, UnitComposition, UnitStats, UnitWeapon, UnitWeaponGroups } from '../models/army-unit';
+import { ApiFactionRecord, ApiUnitBulkResponse, ApiUnitComposition, ApiUnitRecord, ApiUnitStats, ApiUnitWeaponGroups, ApiWeaponRecord } from '../models/openhammer-api';
 
 const fallbackUnits: ArmyUnit[] = [
   { id: 'intercessors', name: 'Intercessors', faction: 'Imperium', role: 'Troops', points: 90, abilities: ['Objective Secured', 'Bolt Rifle', 'Tactical Flexibility'], source: 'Fallback' },
@@ -16,12 +18,6 @@ const fallbackUnits: ArmyUnit[] = [
   { id: 'squig-hoppers', name: 'Squig Hoppers', faction: 'Orks', role: 'Fast Attack', points: 75, abilities: ['Wild Charge', 'Squig Bombs', 'Unpredictable'], source: 'Fallback' },
   { id: 'brood-hunters', name: 'Brood Hunters', faction: 'Tyranids', role: 'Troops', points: 95, abilities: ['Feeding Frenzy', 'Swarm', 'Synapse'], source: 'Fallback' }
 ];
-
-export interface ArmyFaction {
-  name: string;
-  factionType: string;
-  unitCount: number;
-}
 
 @Injectable({ providedIn: 'root' })
 export class UnitCatalogService {
@@ -149,60 +145,3 @@ export class UnitCatalogService {
   }
 }
 
-interface ApiFactionRecord {
-  name: string;
-  faction_type: string;
-  unit_count: number;
-}
-
-interface ApiUnitRecord {
-  id?: string;
-  name?: string;
-  faction?: string;
-  faction_type?: string;
-  type?: string;
-  role?: string;
-  points?: number | { base?: number };
-  stats?: ApiUnitStats;
-  composition?: ApiUnitComposition;
-  invuln_save?: string | number | null;
-  weapons?: ApiUnitWeaponGroups;
-  abilities?: Array<{ name?: string; description?: string }>;
-  special_rules?: unknown[];
-  keywords?: unknown[];
-}
-
-interface ApiUnitBulkResponse {
-  units: ApiUnitRecord[];
-}
-
-interface ApiUnitComposition {
-  min_models?: number | null;
-  max_models?: number | null;
-}
-
-interface ApiUnitWeaponGroups {
-  ranged?: ApiWeaponRecord[];
-  melee?: ApiWeaponRecord[];
-}
-
-interface ApiWeaponRecord {
-  name?: string;
-  Range?: string | number | null;
-  A?: string | number | null;
-  BS?: string | number | null;
-  WS?: string | number | null;
-  S?: string | number | null;
-  AP?: string | number | null;
-  D?: string | number | null;
-  Keywords?: string | null;
-}
-
-interface ApiUnitStats {
-  M?: string | number | null;
-  T?: string | number | null;
-  SV?: string | number | null;
-  W?: string | number | null;
-  LD?: string | number | null;
-  OC?: string | number | null;
-}
